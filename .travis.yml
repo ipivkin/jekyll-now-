@@ -5,6 +5,7 @@ env:
 branches:
   only:
   - master
+install: gem install jekyll
 script:
 - bundle exec jekyll build --destination site
 deploy:
