@@ -5,7 +5,7 @@ env:
 branches:
   only:
   - master
-install: gem install jekyll jekyll-sitemap
+install: gem install jekyll jekyll-sitemap jekyll-paginate html-proofer
 script:
 - jekyll build --destination site
 deploy:
