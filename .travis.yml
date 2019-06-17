@@ -10,8 +10,7 @@ script:
 - jekyll build --destination site
 deploy:
   provider: script
-  script: scp -i ../id_rsa -r . u0741843@31.31.196.115
-  local-dir: "./site"
+  script: rsync -r --delete-after --quiet $TRAVIS_BUILD_DIR/site  u0741843@31.31.196.115
   on:
     branch: master
 before_install:
