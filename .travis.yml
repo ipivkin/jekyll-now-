@@ -9,7 +9,8 @@ install: gem install jekyll jekyll-sitemap jekyll-paginate html-proofer jekyll-f
 script:
 - jekyll build --destination site
 deploy:
-  provider: pages
+  provider: script
+  script: scp -i ../id_rsa -r . u0741843@31.31.196.115
   local-dir: "./site"
   target-branch: master
   email: deploy@travis-ci.org
