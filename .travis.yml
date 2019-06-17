@@ -11,10 +11,7 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: 
- - pwd 
- - ls 
- - rsync -r --delete-after --quiet site  u0741843@31.31.196.115
+  script: pwd && ls && rsync -r --delete-after --quiet site  u0741843@31.31.196.115
   on:
     branch: master
 before_install:
