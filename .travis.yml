@@ -18,8 +18,8 @@ before_install:
 - openssl aes-256-cbc -K $encrypted_83e622d86ec6_key -iv $encrypted_83e622d86ec6_iv
   -in deploy_key.enc -out deploy_key -d
 - eval "$(ssh-agent -s)"
-- chmod 600 ./id_rsa
+- chmod 600 ./deploy_key
 - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-- ssh-add ./id_rsa
+- ssh-add ./deploy_key
 # test ssh connection for: https://github.com/dwyl/learn-travis/issues/42
-- ssh -i ./id_rsa u0741843@31.31.196.115 pwd
+- ssh -i ./deploy_key u0741843@31.31.196.115 pwd
