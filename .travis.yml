@@ -1,0 +1,25 @@
+language: ruby
+cache: bundler
+env:
+  - SERVER_IP_ADDRESS=31.31.196.115
+branches:
+  only:
+  - master
+install: gem install jekyll jekyll-sitemap jekyll-paginate html-proofer jekyll-feed
+script:
+- jekyll build --destination site
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: rsync -r --delete-after --quiet site/  u0741843@31.31.196.115:www/pivkin.space
+  on:
+    branch: master
+before_install:
+- openssl aes-256-cbc -K $encrypted_83e622d86ec6_key -iv $encrypted_83e622d86ec6_iv
+  -in deploy_key.enc -out deploy_key -d
+- eval "$(ssh-agent -s)"
+- chmod 600 ./id_rsa
+- echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+- ssh-add ./id_rsa
+# test ssh connection for: https://github.com/dwyl/learn-travis/issues/42
+- ssh -i ./id_rsa u0741843@31.31.196.115 pwd
